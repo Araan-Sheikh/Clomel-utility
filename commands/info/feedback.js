@@ -10,7 +10,7 @@ module.exports = {
         accessableby: "everyone"
     },
     run: async (bot, message, args) => {
-    let feedbackchannel = bot.channels.cache.get("774586422455435307");
+    let feedbackchannel = bot.channels.cache.get("881592974327287859");
     let feednumber = message.content.split(" ").slice(1)
     let feedstr = message.content.split(" ").slice(2).join(" ");
     let feednumber1 = parseInt(feednumber)
