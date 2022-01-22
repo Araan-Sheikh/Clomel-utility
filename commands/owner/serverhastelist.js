@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const ownerid = ["733996780823248956"];
-const ownerid2 = ["733996780823248956"];
+const ownerid = ["875768640320962650"];
+const ownerid2 = ["875768640320962650"];
 const hastebin = require('hastebin.js');
 const haste = new hastebin({ /* url: 'hastebin.com */ });
 
