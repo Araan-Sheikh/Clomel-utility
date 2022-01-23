@@ -14,7 +14,7 @@ module.exports = {
     accessableby: "Owner"
   },
   run: async (bot, message, args) => {
-    if (message.author.id == ownerid || ownerid2) {
+    if (message.author.id == "875768640320962650") {
 		let arr = new Array();
         bot.guilds.cache.forEach(async servers => {
 arr.push(`
