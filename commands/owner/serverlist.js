@@ -12,7 +12,7 @@ module.exports = {
     accessableby: "Owner"
   },
   run: async (bot, message, args) => {
-    if (message.author.id == ownerid || ownerid2) {
+    if (message.author.id == "875768640320962650") {
       if (!message.guild.me.hasPermission("ADMINISTRATOR"))
         return message.channel
           .send("I Dont Have Permissions")
