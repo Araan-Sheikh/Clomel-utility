@@ -4,7 +4,7 @@ module.exports = {
       name: "policy",
       description: "Vote for the Bot",
       aliases: [],
-      category: "info",
+      category: "exclusive",
       usage: " ",
       accessableby: "everyone"
   },
