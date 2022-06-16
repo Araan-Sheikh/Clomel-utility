@@ -11,18 +11,18 @@ module.exports = {
         accessableby: "Administrator"
     },
     run: async (bot, message, args) => {
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You Don't Have Sufficient Permissions!- [MANAGE_MESSAGES]")
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You cannot use this command")
         if (isNaN(args[0]))
-            return message.channel.send('**Please Supply A Valid Amount To Delete Messages!**');
+            return message.channel.send('How many messages do you want me to delete');
 
         if (args[0] > 100)
-            return message.channel.send("**Please Supply A Number Less Than 100!**");
+            return message.channel.send("Please Supply A Number Less Than 100");
 
         if (args[0] < 1)
-            return message.channel.send("**Please Supply A Number More Than 1!**");
+            return message.channel.send("Please Supply A Number More Than 1!");
 
         message.channel.bulkDelete(args[0])
-            .then(messages => message.channel.send(`**Succesfully deleted \`${messages.size}/${args[0]}\` messages**`)
+            .then(messages => message.channel.send(`Succesfully deleted \`${messages.size}/${args[0]}\` messages`)
             .then(msg => msg.delete({ timeout: 2000 })))
             .catch(() => null)
 			let channel = db.fetch(`modlog_${message.guild.id}`)
@@ -32,7 +32,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-                .setColor("#ff0000")
+                .setColor("RANDOM")
                 .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
                 .setFooter(message.guild.name, message.guild.iconURL())
                 .addField("Moderation", "Purge")
