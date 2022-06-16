@@ -1,33 +1,47 @@
-const db = require("old-wio.db");
-const Discord = require ("discord.js")
-const { version } = require('../../package.json');
-const ms = require('pretty-ms');
-const { version: discordjsVersion } = require('discord.js');
+const { MessageEmbed }= require('discord.js');
+const moment = require('moment');
+const { mem, cpu, os } = require('node-os-utils');
+const { stripIndent } = require('common-tags');
+
 module.exports = {
-config: {
-  name: "botinfo",
-  category: "info",
-  aliases: ['binfo', 'botstats', 'stats'],
-  description: 'Check\'s bot\'s stats',
-},
-  run: async (bot, message, args) => {
-   message.delete();
-      message.channel.send(new Discord.MessageEmbed()
-            .setColor('RANDOM')
-            .setAuthor(`${bot.user.username} v${version}`, bot.user.displayAvatarURL())
-            .setThumbnail(bot.user.displayAvatarURL({ dynamic: true }))
-            .addField('• Uptime :', `${ms(bot.uptime)}`, true)
-            .addField('• WebSocket Ping:', `${bot.ws.ping}ms`, true)
-            .addField('• Memory:', `${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB RSS\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB Heap`, true)
-            .addField('• Guild Count:', `${bot.guilds.cache.size} guilds`, true)
-            .addField(`• User Count:`, `${bot.guilds.cache.reduce((users , value) => users + value.memberCount, 0)} users`, true)
-            .addField('• Commands:', `${bot.commands.size} cmds`,true)
-            .addField('• Node:', `${process.version} on ${process.platform} ${process.arch}`, true)
-            .addField('• Discord.js:', `${discordjsVersion}`, true)
-            .setFooter(`Requested By ${message.author.username}`, message.author.displayAvatarURL({
-              dynamic: true
-            }))
-            .setTimestamp()
-        );
+    config: {
+        name: "stats",
+        aliases: ['bot-info'],
+        category: "info",
+        description: "Shows Bot Statistics",
+        usage: "",
+   },
+    run: async (client, message, args) => {
+        
+    const d = moment.duration(message.client.uptime);
+    const days = (d.days() == 1) ? `${d.days()} day` : `${d.days()} days`;
+    const hours = (d.hours() == 1) ? `${d.hours()} hour` : `${d.hours()} hours`;
+    const clientStats = stripIndent`
+      Servers   :: ${message.client.guilds.cache.size}
+      Users     :: ${message.client.users.cache.size}
+      Channels  :: ${message.client.channels.cache.size}
+      WS Ping   :: ${Math.round(message.client.ws.ping)}ms
+      Uptime    :: ${days} and ${hours}
+    `;
+    const { totalMemMb, usedMemMb } = await mem.info();
+    const serverStats = stripIndent`
+      OS        :: ${await os.oos()}
+      CPU       :: ${cpu.model()}
+      Cores     :: ${cpu.count()}
+      CPU Usage :: ${await cpu.usage()} %
+      RAM       :: ${totalMemMb} MB
+      RAM Usage :: ${usedMemMb} MB 
+    `;
+    
+    const embed = new MessageEmbed()
+      .setTitle('Bot\'s Statistics')
+      .addField('Commands', `\`${message.client.commands.size}\` commands`, true)
+      .addField('Aliases', `\`${message.client.aliases.size}\` aliases`, true)
+      .addField('Client', `\`\`\`asciidoc\n${clientStats}\`\`\``)
+      .addField('Server', `\`\`\`asciidoc\n${serverStats}\`\`\``)
+      .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
+      .setTimestamp()
+      .setColor(message.guild.me.displayHexColor);
+    message.channel.send(embed);
     }
 }
