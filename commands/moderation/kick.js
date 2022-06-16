@@ -28,8 +28,8 @@ module.exports = {
             var reason = args.slice(1).join(" ");
             try {
                 const sembed2 = new MessageEmbed()
-                    .setColor("RANDOM")
-                    .setDescription(`You Have Been Kicked From ${message.guild.name} for - ${reason || "No Reason!"}`)
+                    .setColor("RED")
+                    .setDescription(`**Hello, You Have Been Kicked From ${message.guild.name} for - ${reason || "No Reason!"}**`)
                     .setFooter(message.guild.name, message.guild.iconURL())
                 kickMember.send(sembed2).then(() =>
                     kickMember.kick()).catch(() => null)
@@ -38,13 +38,13 @@ module.exports = {
             }
             if (reason) {
             var sembed = new MessageEmbed()
-                .setColor("RANDOM")
+                .setColor("GREEN")
                 .setAuthor(message.guild.name, message.guild.iconURL())
                 .setDescription(`**${kickMember.user.username}** has been kicked for ${reason}`)
             message.channel.send(sembed);
             } else {
                 var sembed2 = new MessageEmbed()
-                .setColor("RANDOM")
+                .setColor("GREEN")
                 .setAuthor(message.guild.name, message.guild.iconURL())
                 .setDescription(`**${kickMember.user.username}** has been kicked`)
             message.channel.send(sembed2);
@@ -54,7 +54,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-                .setColor("RANDOM")
+                .setColor("#ff0000")
                 .setThumbnail(kickMember.user.displayAvatarURL({ dynamic: true }))
                 .setFooter(message.guild.name, message.guild.iconURL())
                 .addField("**Moderation**", "kick")

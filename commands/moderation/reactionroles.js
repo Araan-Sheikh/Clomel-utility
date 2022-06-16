@@ -46,7 +46,7 @@ try{
   let choice = reactions.get("✅") || reactions.get("❌");
   if (choice.emoji.name === "✅") {
     let emb = new Discord.MessageEmbed()
-      .setColor("RANDOM")
+      .setColor("#FF5349")
       .setDescription(roles.text || `React to get <@&${roles.role}> role`);
     roles.channel.send(emb).then(msg => {
       msg.react(roles.emoji);
@@ -75,7 +75,7 @@ try{
     let settings = {};
     for (let i = 0; i < prompts.length; i++) {
       let embed1 = new Discord.MessageEmbed()
-        .setColor("RANDOM")
+        .setColor("#FF5349")
         .setDescription(prompts[i]);
       await message.channel.send(embed1);
       let response = await message.channel.awaitMessages(

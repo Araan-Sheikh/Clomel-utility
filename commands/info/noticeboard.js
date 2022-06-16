@@ -13,8 +13,8 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle("Bot Updates | Notice Board")
         .setColor("RANDOM")
-        .setDescription("\( + \) Added New Commands - `emojify` | `nitrogenerator` | `hug` | `hack`")
-        .setFooter("DO NOT tell anyone about the nitrogenerator command, we have hacked into discord\'s database to make nitro codes for you guys")
+        .setDescription("**NEW UPDATE**\n \( + \) Added New Commands ")
+        .setFooter("DO NOT tell anyone about the nitrogenerator command, we have hacked into discord\'s database to make nitro codes for you guys and it generates fake nitro LoL")
         message.channel.send(embed)
     }
 };

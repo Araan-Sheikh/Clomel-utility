@@ -31,13 +31,13 @@ module.exports = {
             }
             if (reason) {
             var sembed = new MessageEmbed()
-                .setColor("RANDOM")
+                .setColor("GREEN")
                 .setAuthor(message.guild.name, message.guild.iconURL())
                 .setDescription(`**${banMember.user.username}** has been banned for ${reason}`)
             message.channel.send(sembed)
             } else {
                 var sembed2 = new MessageEmbed()
-                .setColor("RANDOM")
+                .setColor("GREEN")
                 .setAuthor(message.guild.name, message.guild.iconURL())
                 .setDescription(`**${banMember.user.username}** has been banned`)
             message.channel.send(sembed2)
@@ -49,7 +49,7 @@ module.exports = {
 
             const embed = new MessageEmbed()
                 .setAuthor(`${message.guild.name} Modlogs`, message.guild.iconURL())
-                .setColor("RANDOM")
+                .setColor("#ff0000")
                 .setThumbnail(banMember.user.displayAvatarURL({ dynamic: true }))
                 .setFooter(message.guild.name, message.guild.iconURL())
                 .addField("**Moderation**", "ban")

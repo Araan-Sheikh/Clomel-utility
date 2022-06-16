@@ -269,7 +269,7 @@ bot.on('message', async message => {
     };
     try {
         if (message.mentions.has(bot.user) && !message.mentions.has(message.guild.id)) {
-            return message.channel.send('**My Prefix In This Server is - \`${prefix}\` You can change your prefix with the command \`${prefix}setprefix\`**')
+            return message.channel.send(`**My Prefix In This Server is - \`${prefix}\` You can change your prefix with the command \`${prefix}setprefix\`**`)
         }
     } catch {
         return;

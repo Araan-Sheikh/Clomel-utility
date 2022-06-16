@@ -16,9 +16,9 @@ module.exports = {
           let b = await db.fetch(`prefix_${message.guild.id}`);
           if (b) {
         return message.channel.send(
-          `Prefix Of This Server is \`${b}\``
+          `**Prefix Of This Server is \`${b}\`**`
         );
-      } else return message.channel.send("Please Enter A Prefix To Set");
+      } else return message.channel.send("**Please Enter A Prefix To Set!**");
     } 
       
         try {
@@ -27,11 +27,11 @@ module.exports = {
             let b = await db.fetch(`prefix_${message.guild.id}`)
 
             if (a === b) {
-                return message.channel.send('This is Already The Server Prefix!')
+                return message.channel.send('**This is Already The Server Prefix!**')
             } else {
                 db.set(`prefix_${message.guild.id}`, a.toLowerCase())
 
-                return message.channel.send(`Successfuly Set Server Prefix To \`${a}\``)
+                return message.channel.send(`**Successfuly Set Server Prefix To \`${a}\`**`)
             }
         } catch (e) {
             console.log(e)

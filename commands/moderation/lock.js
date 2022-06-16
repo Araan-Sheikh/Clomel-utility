@@ -14,12 +14,10 @@ module.exports = {
     return message.channel.send(
         new MessageEmbed()
         .setDescription("You don't have enough permissions to use this command.")
-        .setColor("RANDOM")
     )
     if(!message.mentions.channels.first()) return message.channel.send(
         new MessageEmbed()
         .setDescription("You didn't specify a channel to lock.")
-        .setColor("RANDOM")
     )
 
    await message.mentions.channels.forEach(async channel => {

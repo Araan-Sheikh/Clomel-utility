@@ -13,17 +13,17 @@ module.exports = {
             return message.channel.send("You Don't Have Permission!")
         }
 
-        message.channel.send('Nuke in progress...')
+        message.channel.send('**nuking...**')
         
         await message.channel.clone().then
 
-        ((ch) =>{ch.setParent(message.channel.id);
+        ((ch) =>{ch.setParent(message.channel.parent.id);
 
         ch.setPosition(message.channel.position);
 
         message.channel.delete().then
 
-        (ch.send('Channel has been nuked'))
+        (ch.send('**Channel Has Been Nuked** \n https://imgur.com/LIyGeCR'))
  
     });
     }
